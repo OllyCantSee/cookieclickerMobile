@@ -1,12 +1,14 @@
-let cookieCountNum = 0;
+let cookieCountNum = 400;
 let currentCookieIncrease = 1;
 
 let currentCookieIncreasePerSecond = 0;
 let currentCursorUprgradeAddition = 0.1;
+let currentGrandmaUprgradeAddition = 1;
 let numberOfCursors = 0;
+let numberOfGrandmas = 0;
 
-function getCurrentCursorPrice() {
-    return document.getElementById("cursor_price").innerHTML;
+function getCurrentPrice(type) {
+    return document.getElementById(type + "_price").innerHTML;
 }
 
 // Add cookie FROM CLICKING
@@ -43,29 +45,50 @@ function addItem(type) {
     if (type === "cursor") {
         numberOfCursors = numberOfCursors + 1;
     }
+    if (type === "grandma") {
+        numberOfGrandmas = numberOfGrandmas + 1;
+    }
 }
 
-function cursorUpgrade() {
-    let cursorUpgradePrice = getCurrentCursorPrice()
-    if (cookieCountNum >= cursorUpgradePrice) {
-        cookieCountNum = cookieCountNum - cursorUpgradePrice;
-        currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + currentCursorUprgradeAddition;
-        updateCookieCount();
-        updateCookieIncrease();
-        addItem("cursor");
-        updateItem("cursor");
-    } else {
-        
+function buttonUpgrade(type) {
+    if (type === "cursor") {
+        let UpgradePrice = getCurrentPrice("cursor")
+
+        if (cookieCountNum >= UpgradePrice) {
+            cookieCountNum = cookieCountNum - UpgradePrice;
+            currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + currentCursorUprgradeAddition;
+            updateCookieCount();
+            updateCookieIncrease();
+            addItem("cursor");
+            updateItem("cursor");
+        }
+    } else if (type === "grandma") {
+        let UpgradePrice = getCurrentPrice("grandma")
+        if (cookieCountNum >= UpgradePrice) {
+            cookieCountNum = cookieCountNum - UpgradePrice;
+            currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + currentGrandmaUprgradeAddition;
+            updateCookieCount();
+            updateCookieIncrease();
+            addItem("grandma");
+            updateItem("grandma");
+        }
     }
 }
 
 function updateItem(type) {
-    let cursorUpgradePrice = getCurrentCursorPrice()
     if (type === "cursor") {
-        cursorUpgradePrice = parseInt(cursorUpgradePrice) * 1.15;
-        document.getElementById(type + "_price").innerHTML = Math.round(parseInt(cursorUpgradePrice), 1);
+        let UpgradePrice = getCurrentPrice("cursor")
+        UpgradePrice = parseInt(UpgradePrice) * 1.15;
+        document.getElementById(type + "_price").innerHTML = Math.round(parseInt(UpgradePrice), 1);
 
         document.getElementById(type + "_count").innerHTML = numberOfCursors;
+    }
+    if (type === "grandma") {
+        let UpgradePrice = getCurrentPrice("grandma")
+        UpgradePrice = parseInt(UpgradePrice) * 1.25;
+        document.getElementById(type + "_price").innerHTML = Math.round(parseInt(UpgradePrice), 1);
+
+        document.getElementById(type + "_count").innerHTML = numberOfGrandmas;
     }
 }
 
@@ -77,3 +100,10 @@ document.addEventListener('touchstart', function(event) {
         event.preventDefault();
     }
 }, { passive: false });
+
+
+
+
+
+
+
