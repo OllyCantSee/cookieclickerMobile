@@ -4,8 +4,10 @@ let currentCookieIncrease = 1;
 let currentCookieIncreasePerSecond = 0;
 let currentCursorUprgradeAddition = 0.1;
 let currentGrandmaUprgradeAddition = 1;
+let currentFarmUprgradeAddition = 8;
 let numberOfCursors = 0;
 let numberOfGrandmas = 0;
+let numberOfFarms = 0;
 
 function getCurrentPrice(type) {
     return document.getElementById(type + "_price").innerHTML;
@@ -48,6 +50,9 @@ function addItem(type) {
     if (type === "grandma") {
         numberOfGrandmas = numberOfGrandmas + 1;
     }
+    if (type === "farm") {
+        numberOfFarms = numberOfFarms + 1;
+    }
 }
 
 function buttonUpgrade(type) {
@@ -72,6 +77,16 @@ function buttonUpgrade(type) {
             addItem("grandma");
             updateItem("grandma");
         }
+    } else if (type === "farm") {
+        let UpgradePrice = getCurrentPrice("farm")
+        if (cookieCountNum >= UpgradePrice) {
+            cookieCountNum = cookieCountNum - UpgradePrice;
+            currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + currentFarmUprgradeAddition;
+            updateCookieCount();
+            updateCookieIncrease();
+            addItem("farm");
+            updateItem("farm");
+        }
     }
 }
 
@@ -89,6 +104,13 @@ function updateItem(type) {
         document.getElementById(type + "_price").innerHTML = Math.round(parseInt(UpgradePrice), 1);
 
         document.getElementById(type + "_count").innerHTML = numberOfGrandmas;
+    }
+    if (type === "farm") {
+        let UpgradePrice = getCurrentPrice("farm")
+        UpgradePrice = parseInt(UpgradePrice) * 1.25;
+        document.getElementById(type + "_price").innerHTML = Math.round(parseInt(UpgradePrice), 1);
+
+        document.getElementById(type + "_count").innerHTML = numberOfFarms;
     }
 }
 
