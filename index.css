@@ -8,6 +8,11 @@
     font-family: "Kanit", serif;
 }
 
+.page_layout {
+    display: flex;
+    flex-direction: column;
+}
+
 
 .cookie_section {
     position: relative;
@@ -210,6 +215,19 @@
 .upgrades_section {
     display: flex;
     flex-direction: column;
+}
+
+.button_item_count {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding-right: 20px;
+}
+
+.item_count {
+    font-size: 50px;
+    color: #444039cc;
 }
 
 
