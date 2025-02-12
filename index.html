@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="index.css">
+    <title>Cookie Clicker</title>
+</head>
+<body>
+
+    <section class="cookie_section">
+        <div class="bakery_name_container">
+            <div class="bakery_name_background">
+                <p class="bakery_name">Memas Bakery</p>
+            </div>
+        </div>
+
+        <div class="cookie_count_container">
+            <div class="cookie_count_background">
+                <p class="cookie_count" id="cookie_count">0 Cookies</p>
+                <p class="cookie_increase" id="cookie_increase">per second: 0</p>
+            </div>
+        </div>
+
+        <div class="cookie_container">
+            <button class="cookie_button" onclick="addCookie()"><img class="cookie_image" src="Cookie.png" alt="A chocolate chip cookie"></button>
+            <div class="background_shine shine_1"><img class="background_shine_img" src="background_shine.png" alt=""></div>
+            <div class="background_shine shine_2"><img class="background_shine_img" src="background_shine.png" alt=""></div>
+        </div>
+
+        <img src="panelHorizontal.png" alt="">
+
+    </section>
+
+
+    <section class="upgrades_section">
+
+        <div class="cursor_upgrade_container">
+            <button class="cursor_upgrade_button" onclick="cursorUpgrade()"></button>
+            <div class="image_section">
+                <img class="button_image" src="Cursor.png" alt="">
+            </div>
+
+            <div class="name_price_section">
+                <p href="" class="button_name">Cursor</p>
+                <div class="price_container">
+                    <img src="Cookie Image.png" alt="" class="cookie_price_image">
+                    <p class="button_price" id="cursor_price">15</p>
+                </div>
+            </div>
+
+
+        </div>
+
+    </section>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
