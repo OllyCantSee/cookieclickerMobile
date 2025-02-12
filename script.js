@@ -1,4 +1,4 @@
-let cookieCountNum = 400;
+let cookieCountNum = 0;
 let currentCookieIncrease = 1;
 
 let currentCookieIncreasePerSecond = 0;
