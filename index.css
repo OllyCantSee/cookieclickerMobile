@@ -226,6 +226,28 @@
 }
 
 
+.level_up_button {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.level_up_button_active {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.cursor_icon {
+    width: 80px;
+    height: 80px;
+}
+
+
 
 @keyframes shine_rotation_clock {
     0% {transform: rotate(0deg)}
