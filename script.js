@@ -39,24 +39,33 @@ function cookiesUpdatePerSecond() {
 
 }
 
+function addItem(type) {
+    if (type === "cursor") {
+        numberOfCursors = numberOfCursors + 1;
+    }
+}
+
 function cursorUpgrade() {
     let cursorUpgradePrice = getCurrentCursorPrice()
     if (cookieCountNum >= cursorUpgradePrice) {
         cookieCountNum = cookieCountNum - cursorUpgradePrice;
         currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + currentCursorUprgradeAddition;
-        updateCookieCount()
+        updateCookieCount();
         updateCookieIncrease();
-        updatePrice("cursor");
+        addItem("cursor");
+        updateItem("cursor");
     } else {
         
     }
 }
 
-function updatePrice(type) {
+function updateItem(type) {
     let cursorUpgradePrice = getCurrentCursorPrice()
     if (type === "cursor") {
         cursorUpgradePrice = parseInt(cursorUpgradePrice) * 1.15;
         document.getElementById(type + "_price").innerHTML = Math.round(parseInt(cursorUpgradePrice), 1);
+
+        document.getElementById(type + "_count").innerHTML = numberOfCursors;
     }
 }
 
