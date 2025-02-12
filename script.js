@@ -1,4 +1,4 @@
-let cookieCountNum = 0;
+let cookieCountNum = 2000;
 let currentCookieIncrease = 1;
 
 let currentCookieIncreasePerSecond = 0;
@@ -114,6 +114,21 @@ function updateItem(type) {
     }
 }
 
+
+
+
+function buttonLevelUp(type) {
+    if(type === "cursor1") {
+        let UpgradePrice = getCurrentPrice("level_up")
+        if (cookieCountNum >= UpgradePrice && numberOfCursors > 0) {
+            currentCursorUprgradeAddition = currentCursorUprgradeAddition * 2
+            currentCookieIncreasePerSecond = currentCookieIncreasePerSecond = currentCursorUprgradeAddition;
+            updateCookieIncrease();
+            document.getElementById("level_up_button").remove()
+        }
+
+    }
+}
 
 
 
