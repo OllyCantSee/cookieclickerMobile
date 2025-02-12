@@ -1,4 +1,4 @@
-let cookieCountNum = 2000;
+let cookieCountNum = 0;
 let currentCookieIncrease = 1;
 
 let currentCookieIncreasePerSecond = 0;
@@ -125,6 +125,8 @@ function buttonLevelUp(type) {
             currentCookieIncreasePerSecond = currentCookieIncreasePerSecond = currentCursorUprgradeAddition;
             updateCookieIncrease();
             document.getElementById("level_up_button").remove()
+
+            currentCookieIncrease = currentCookieIncrease * 2
         }
 
     }
