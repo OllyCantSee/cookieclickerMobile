@@ -3,6 +3,7 @@ let currentCookieIncrease = 1;
 
 let currentCookieIncreasePerSecond = 0;
 let currentCursorUprgradeAddition = 0.1;
+let numberOfCursors = 0;
 
 function getCurrentCursorPrice() {
     return document.getElementById("cursor_price").innerHTML;
@@ -35,6 +36,7 @@ let cookieIncreaseTimer = setInterval(cookiesUpdatePerSecond, 1000)
 
 function cookiesUpdatePerSecond() {
     addCookieFromIncrease()
+
 }
 
 function cursorUpgrade() {
@@ -57,3 +59,12 @@ function updatePrice(type) {
         document.getElementById(type + "_price").innerHTML = Math.round(parseInt(cursorUpgradePrice), 1);
     }
 }
+
+
+
+
+document.addEventListener('touchstart', function(event) {
+    if (event.touches.length > 1) {
+        event.preventDefault();
+    }
+}, { passive: false });
