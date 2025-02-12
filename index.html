@@ -1,238 +1,99 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="index.css">
+    <title>Cookie Clicker</title>
+</head>
+<body>
+
+    <div class="page_layout">    
+        
+        <section class="cookie_section">
+            <div class="bakery_name_container">
+                <div class="bakery_name_background">
+                    <p class="bakery_name">Memas Bakery</p>
+                </div>
+            </div>
+
+            <div class="cookie_count_container">
+                <div class="cookie_count_background">
+                    <p class="cookie_count" id="cookie_count">0 Cookies</p>
+                    <p class="cookie_increase" id="cookie_increase">per second: 0</p>
+                </div>
+            </div>
+
+            <div class="cookie_container">
+                <button class="cookie_button" onclick="addCookie()"><img class="cookie_image" src="Cookie.png" alt="A chocolate chip cookie"></button>
+                <div class="background_shine shine_1"><img class="background_shine_img" src="background_shine.png" alt=""></div>
+                <div class="background_shine shine_2"><img class="background_shine_img" src="background_shine.png" alt=""></div>
+            </div>
+
+            <img src="panelHorizontal.png" alt="">
+
+        </section>
 
 
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: "Kanit", serif;
-}
+        <section class="upgrades_section">
 
-.page_layout {
-    display: flex;
-    flex-direction: column;
-}
+            <div class="upgrade_button">
+                <div class="cursor_upgrade_container">     
+                    <div class="background_image_container">
+                        <img class="background_image" src="Buildings_tile.png" alt="">
+                    </div>
 
+                    <button class="cursor_upgrade_button" onclick="buttonUpgrade('cursor')"></button>
+                    <div class="image_section">
+                        <img class="button_image" src="Cursor.png" alt="">
+                    </div>
 
-.cookie_section {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    background-image: url(https://cdn.dashnet.org/cookieclicker/img/bgBlue.jpg);
-    padding-top: 20px;
-    height: min-content;
-}
+                    <div class="name_price_section">
+                        <p href="" class="button_name">Cursor</p>
+                        <div class="price_container">
+                            <img src="Cookie Image.png" alt="" class="cookie_price_image">
+                            <p class="button_price" id="cursor_price">15</p>
+                        </div>
+                    </div>
+                    
+                    <div class="button_item_count">
+                        <p class="item_count" id="cursor_count">0</p>
+                    </div>
 
-.bottom_line {
-    position: absolute;
-    bottom: 0;
-}
+                </div>
+            </div>
 
-.cookie_button {
-    outline: none;
-    background: none;
-    border: none;
-}
+            <div class="upgrade_button">
+                <div class="cursor_upgrade_container">     
+                    <div class="background_image_container">
+                        <img class="background_image" src="Buildings_tile.png" alt="">
+                    </div>
 
-.bakery_name_container {
-    height: max-content;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
-}
+                    <button class="cursor_upgrade_button" onclick="buttonUpgrade('grandma')"></button>
+                    <div class="image_section">
+                        <img class="button_image" src="grandma.png" alt="">
+                    </div>
 
-.bakery_name_background {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #0000007c;
-    border-radius: 9999px;
-    width: 80%;
-    z-index: 3;
-}
+                    <div class="name_price_section">
+                        <p href="" class="button_name">Grandma</p>
+                        <div class="price_container">
+                            <img src="Cookie Image.png" alt="" class="cookie_price_image">
+                            <p class="button_price" id="grandma_price">100</p>
+                        </div>
+                    </div>
+                    
+                    <div class="button_item_count">
+                        <p class="item_count" id="grandma_count">0</p>
+                    </div>
 
-.bakery_name {
-    font-size: 25px;
-    font-weight: 500;
-    color: #fff;
-    padding: 1px 25px;
-    z-index: 3;
-}
+                </div>
+            </div>
 
-.cookie_container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-    margin-top: -20px;
-    overflow: hidden;
-    height: 380px
-}
+        </section>
 
-.cookie_image {
-    cursor: pointer;
-    border-radius: 260px;
-    width: 60%;
-    z-index: 3;
-    filter: drop-shadow(6px 6px 10px rgb(0, 0, 0));
-    transition: all 0.1s ease;
-}
+    </div>
 
-.cookie_image:hover  {
-    scale: 1.02;
-}
-.cookie_image:active  {
-    scale: 0.96;
-}
+    <script src="script.js"></script>
 
-.background_shine {
-    z-index: -1;
-    position: absolute;
-    user-select: none;
-    clip-path: circle(50%);
-}
-
-.background_shine_img {
-    width: 410px;
-    opacity: 40%;
-    user-select: none;
-    clip-path: circle(50%);
-}
-
-.shine_1 {
-    animation-name: shine_rotation_clock;
-    animation-duration: 30s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-}
-.shine_2 {
-    animation-name: shine_rotation_anticlock;
-    animation-duration: 30s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-}
-
-.cookie_count_container {
-    height: max-content;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
-    margin-top: 20px;
-}
-
-.cookie_count_background {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #0000007c;
-    width: 100%;
-    z-index: 3;
-    flex-direction: column;
-}
-
-.cookie_count {
-    font-size: 40px;
-    font-weight: 400;
-    color: #fff;
-    z-index: 3;
-}
-
-.cookie_increase {
-    margin-top: -15px;
-    font-size: 22px;
-    font-weight: 300;
-    color: #fff;
-    z-index: 3;
-}
-
-.cursor_upgrade_button {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.cursor_upgrade_container {
-    position: relative;
-    width: 100%;
-    display: flex;
-    height: max-content;
-}
-.cookie_price_image {
-    width: 20px;
-    height: 20px;
-}
-
-.price_container {
-    display: flex;
-    align-items: center;
-    margin-top: -15px;
-    padding-bottom: 5px;
-    padding-top: 5px;
-}
-
-.button_price {
-    font-size: 25px;
-    font-weight: 500;
-    color: #5fe55f;
-    text-shadow: 0px 1px 3px #000;
-    margin-left: 5px;
-}
-
-.button_name {
-    font-size: 35px;
-    font-weight: 500;
-    margin-top: -5px;
-    color: #fff;
-    text-shadow: 1px 1px 5px #000;
-}
-
-.image_section {
-    height: 100%;
-}
-
-.button_image {
-    height: 75px;
-}
-
-.background_image {
-    position: absolute;
-    z-index: -1;
-    height: 100%;
-    width: 100%;
-}
-
-.upgrades_section {
-    display: flex;
-    flex-direction: column;
-}
-
-.button_item_count {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: right;
-    padding-right: 20px;
-}
-
-.item_count {
-    font-size: 50px;
-    color: #444039cc;
-}
-
-
-
-@keyframes shine_rotation_clock {
-    0% {transform: rotate(0deg)}
-    100% {transform: rotate(360deg)}
-}
-
-@keyframes shine_rotation_anticlock {
-    0% {transform: rotate(0deg)}
-    100% {transform: rotate(-360deg)}
-}
+</body>
+</html>
