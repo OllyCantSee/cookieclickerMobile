@@ -117,11 +117,12 @@ function updateItem(type) {
 
 
 
-function buttonLevelUp(type) {
-    if(type === "cursor1") {
+function buttonLevelUp(type, element) {
+    if(type === "cursor_upgrade") {
         let UpgradePrice = getCurrentPrice("level_up")
         if (cookieCountNum >= UpgradePrice && numberOfCursors > 0) {
-            document.getElementById("level_up_button").remove()
+            
+            deleteLastLevelUpButton(element)
 
             cookieCountNum = cookieCountNum - UpgradePrice;
 
@@ -129,9 +130,9 @@ function buttonLevelUp(type) {
             currentCursorUprgradeAddition = currentCursorUprgradeAddition * 2 // New upgrade addition is 0.2 when you buy a cursor
 
             let previousIncreasePerSecond = previousCursorUpgradeAddition * numberOfCursors;
-            let newCursorIncrasePerSecond = (previousIncreasePerSecond * 2) / 2;
+            let newCursorIncreasePerSecond = (previousIncreasePerSecond * 2) / 2;
             
-            currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + newCursorIncrasePerSecond;
+            currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + newCursorIncreasePerSecond;
 
             currentCookieIncrease = currentCookieIncrease * 2;
 
@@ -139,22 +140,22 @@ function buttonLevelUp(type) {
             updateCookieCount();
         }
     }
-    if(type === "cursor2") {
+
+    if(type === "grandma_upgrade") {
         let UpgradePrice = getCurrentPrice("level_up")
-        if (cookieCountNum >= UpgradePrice && numberOfCursors > 0) {
-            document.getElementById("level_up_button").remove()
+        if (cookieCountNum >= UpgradePrice && numberOfGrandmas > 0) {
 
             cookieCountNum = cookieCountNum - UpgradePrice;
 
-            let previousCursorUpgradeAddition = currentCursorUprgradeAddition
-            currentCursorUprgradeAddition = currentCursorUprgradeAddition * 2 // New upgrade addition is 0.2 when you buy a cursor
+            deleteLastLevelUpButton(element)
 
-            let previousIncreasePerSecond = previousCursorUpgradeAddition * numberOfCursors;
-            let newCursorIncrasePerSecond = (previousIncreasePerSecond * 2) / 2;
+            let previousGrandmaUpgradeAddition = currentGrandmaUprgradeAddition
+            currentGrandmaUprgradeAddition = currentGrandmaUprgradeAddition * 2 // New upgrade addition is 0.2 when you buy a cursor
+
+            let previousIncreasePerSecond = previousGrandmaUpgradeAddition * numberOfGrandmas;
+            let newGrandmaIncreasePerSecond = (previousIncreasePerSecond * 2) / 2;
             
-            currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + newCursorIncrasePerSecond;
-
-            currentCookieIncrease = currentCookieIncrease * 2;
+            currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + newGrandmaIncreasePerSecond;
 
             updateCookieIncrease();
             updateCookieCount();
@@ -171,6 +172,13 @@ document.addEventListener('touchstart', function(event) {
 }, { passive: false });
 
 
+function deleteLastLevelUpButton(element) {
+    const elements = document.querySelectorAll("#level_up_button");
+    if (elements.length > 0) {
+        const lastElement = elements[element];
+        lastElement.remove();
+    }
+}
 
 
 
