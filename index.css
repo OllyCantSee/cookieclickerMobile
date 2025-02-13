@@ -11,8 +11,8 @@
 .page_layout {
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
-
 
 .cookie_section {
     position: relative;
@@ -257,7 +257,7 @@
     z-index: 10;
     user-select: none;
     pointer-events: none;
-    animation: float_up_fall 1.3s ease-in-out;
+    animation: float_up_fall 1s cubic-bezier(0.5, 0.03, 0.515, 0.955);
     animation-fill-mode: forwards;
 }
 
@@ -273,6 +273,27 @@
     animation-fill-mode: forwards;
 }
 
+.section_title {
+    background: linear-gradient(#000000c2, #000000);
+    color: #fff;
+    padding: 4px 5px;
+    font-size: 23px;
+    padding-bottom: 8px;
+    padding-left: 10px;
+}
+
+.level_up_container {
+    display: flex;
+}
+
+.section_title_container {
+    background-image: url(https://cdn.dashnet.org/cookieclicker/img/bgBlue.jpg);
+}
+
+
+.level_up_items_section {
+    background-image: url(https://cdn.dashnet.org/cookieclicker/img/bgBlue.jpg);
+}
 
 @keyframes shine_rotation_clock {
     0% {transform: rotate(0deg)}
@@ -289,7 +310,7 @@
     100% {transform: translateY(-50px); opacity: 0}
 }
 @keyframes float_up_fall {
-    0% {transform: translateY(0); opacity: 1}
-    60% {transform: translateY(-30px); opacity: 0.5}
-    100% {transform: translateY(-10); opacity: 0}
+    0% {transform: translateY(0); opacity: 1;}
+    60% {transform: translateY(-30px); opacity: 0.5;}
+    100% {transform: translateY(-10); opacity: 0;}
 }
