@@ -123,6 +123,8 @@ function buttonLevelUp(type) {
         if (cookieCountNum >= UpgradePrice && numberOfCursors > 0) {
             document.getElementById("level_up_button").remove()
 
+            cookieCountNum = cookieCountNum - UpgradePrice;
+
             let previousCursorUpgradeAddition = currentCursorUprgradeAddition
             currentCursorUprgradeAddition = currentCursorUprgradeAddition * 2 // New upgrade addition is 0.2 when you buy a cursor
 
@@ -131,11 +133,32 @@ function buttonLevelUp(type) {
             
             currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + newCursorIncrasePerSecond;
 
-            currentCookieIncrease = 2;
+            currentCookieIncrease = currentCookieIncrease * 2;
 
             updateCookieIncrease();
+            updateCookieCount();
         }
+    }
+    if(type === "cursor2") {
+        let UpgradePrice = getCurrentPrice("level_up")
+        if (cookieCountNum >= UpgradePrice && numberOfCursors > 0) {
+            document.getElementById("level_up_button").remove()
 
+            cookieCountNum = cookieCountNum - UpgradePrice;
+
+            let previousCursorUpgradeAddition = currentCursorUprgradeAddition
+            currentCursorUprgradeAddition = currentCursorUprgradeAddition * 2 // New upgrade addition is 0.2 when you buy a cursor
+
+            let previousIncreasePerSecond = previousCursorUpgradeAddition * numberOfCursors;
+            let newCursorIncrasePerSecond = (previousIncreasePerSecond * 2) / 2;
+            
+            currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + newCursorIncrasePerSecond;
+
+            currentCookieIncrease = currentCookieIncrease * 2;
+
+            updateCookieIncrease();
+            updateCookieCount();
+        }
     }
 }
 
