@@ -1,4 +1,4 @@
-let cookieCountNum = 0;
+let cookieCountNum = 500;
 let currentCookieIncrease = 1;
 
 let currentCookieIncreasePerSecond = 0;
@@ -121,12 +121,17 @@ function buttonLevelUp(type) {
     if(type === "cursor1") {
         let UpgradePrice = getCurrentPrice("level_up")
         if (cookieCountNum >= UpgradePrice && numberOfCursors > 0) {
-            currentCursorUprgradeAddition = currentCursorUprgradeAddition * 2
-            currentCookieIncreasePerSecond = currentCookieIncreasePerSecond = currentCursorUprgradeAddition;
-            updateCookieIncrease();
             document.getElementById("level_up_button").remove()
 
-            currentCookieIncrease = currentCookieIncrease * 2
+            let previousCursorUpgradeAddition = currentCursorUprgradeAddition
+            currentCursorUprgradeAddition = currentCursorUprgradeAddition * 2 // New upgrade addition is 0.2 when you buy a cursor
+
+            let previousIncreasePerSecond = previousCursorUpgradeAddition * numberOfCursors;
+            let newCursorIncrasePerSecond = (previousIncreasePerSecond * 2) / 2;
+            
+            currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + newCursorIncrasePerSecond;
+
+            updateCookieIncrease();
         }
 
     }
