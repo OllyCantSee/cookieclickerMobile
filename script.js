@@ -150,4 +150,53 @@ document.addEventListener('touchstart', function(event) {
 
 
 
+// COOKIE EFFECT FUNCTIONS
+
+let cookieSection = document.getElementById("cookie_button");
+
+cookieSection.addEventListener("mousedown", function(event) {
+    let cookieBox = document.getElementById("cookie_container");
+    
+    let rect = cookieBox.getBoundingClientRect();
+    let mouseXCoordinate = event.clientX - rect.left;
+    let mouseYCoordinate = event.clientY - rect.top;
+
+    const cookieDropper = document.createElement("div");
+    const cookieDropperImage = document.createElement("img");
+    cookieDropperImage.src = "Cookie Image.png";
+    cookieDropper.appendChild(cookieDropperImage);
+    cookieDropper.classList.add("cookie_float");
+
+    const cookieAdditionMessage = document.createElement("h1");
+    cookieAdditionMessage.classList.add("cookie_addition_number")
+    cookieAdditionMessage.innerHTML = "+" + currentCookieIncrease;
+
+    const randomMovementValueX = [-30, -25, -20, 0, 20, 25, 30];
+    let randomMovementX =  Math.floor(Math.random() * randomMovementValueX.length);
+
+    const randomMovementValueY = [-30, -25, -20, 0, 20, 25, 30];
+    let randomMovementY =  Math.floor(Math.random() * randomMovementValueY.length);
+
+    const verticalOffset = 10; // Adjust this value as needed
+    cookieDropper.style.top = (mouseYCoordinate + verticalOffset - randomMovementY) + "px";
+    cookieDropper.style.left = mouseXCoordinate - randomMovementX + "px";
+
+    cookieAdditionMessage.style.top = (mouseYCoordinate + verticalOffset - randomMovementY) + "px";
+    cookieAdditionMessage.style.left = mouseXCoordinate - randomMovementX + "px";
+
+    cookieBox.appendChild(cookieDropper);
+    cookieBox.appendChild(cookieAdditionMessage);
+
+    setTimeout(() => {
+        cookieDropper.remove();
+    }, 2000);
+    setTimeout(() => {
+        cookieAdditionMessage.remove();
+    }, 4000);
+
+    console.log(mouseXCoordinate);
+    console.log(mouseYCoordinate);
+});
+
+
 
