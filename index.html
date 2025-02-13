@@ -55,7 +55,10 @@
                     </div>
 
                     <div class="name_price_section">
-                        <p href="" class="button_name">Cursor</p>
+                        <div class="button_name_container">
+                            <p href="" class="button_name">Cursor</p>
+                        </div>
+
                         <div class="price_container">
                             <img src="Cookie Image.png" alt="" class="cookie_price_image">
                             <p class="button_price" id="cursor_price">15</p>
@@ -131,18 +134,18 @@
         
             <div class="level_up_container">
                 <div class="level_up_button" id="level_up_button">
-                    <button class="level_up_button_active" onclick="buttonLevelUp('cursor1')"></button>
+                    <button class="level_up_button_active" onclick="buttonLevelUp('cursor_upgrade', 0)"></button>
                     <p class="item_count" hidden id="level_up_price">100</p>
                     <img class="cursor_icon" src="cursor_icon.png" alt="">
                 </div>
                 <div class="level_up_button" id="level_up_button">
-                    <button class="level_up_button_active" onclick="buttonLevelUp('cursor2')"></button>
+                    <button class="level_up_button_active" onclick="buttonLevelUp('cursor_upgrade', 1)"></button>
                     <p class="item_count" hidden id="level_up_price">500</p>
                     <img class="cursor_icon" src="cursor_icon_2.png" alt="">
                 </div>
                 <div class="level_up_button" id="level_up_button">
-                    <button class="level_up_button_active" onclick="buttonLevelUp('grandma1')"></button>
-                    <p class="item_count" hidden id="level_up_price">500</p>
+                    <button class="level_up_button_active" onclick="buttonLevelUp('grandma_upgrade', 2)"></button>
+                    <p class="item_count" hidden id="level_up_price">1000</p>
                     <img class="cursor_icon" src="grandma_icon.png" alt="">
                 </div>
             </div>
