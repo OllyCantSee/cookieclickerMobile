@@ -29,9 +29,14 @@
 }
 
 .cookie_button {
+    position: absolute;
     outline: none;
     background: none;
     border: none;
+    width: 300px;
+    height: 300px;
+    z-index: 10;
+    border-radius: 9999px;
 }
 
 .bakery_name_container {
@@ -68,22 +73,23 @@
     z-index: 1;
     margin-top: -20px;
     overflow: hidden;
-    height: 380px
+    height: 380px;
 }
 
 .cookie_image {
     cursor: pointer;
     border-radius: 260px;
-    width: 60%;
+    max-width: 100%;
+    max-height: 300px;
     z-index: 3;
     filter: drop-shadow(6px 6px 10px rgb(0, 0, 0));
     transition: all 0.1s ease;
 }
 
-.cookie_image:hover  {
+.cookie_button:hover .cookie_image{
     scale: 1.02;
 }
-.cookie_image:active  {
+.cookie_button:active .cookie_image  {
     scale: 0.96;
 }
 
@@ -222,7 +228,7 @@
 
 .item_count {
     font-size: 50px;
-    color: #444039cc;
+    color: #444039cc
 }
 
 
@@ -246,7 +252,26 @@
     width: 80px;
     height: 80px;
 }
+.cookie_float {
+    position: absolute;
+    z-index: 10;
+    user-select: none;
+    pointer-events: none;
+    animation: float_up_fall 1.3s ease-in-out;
+    animation-fill-mode: forwards;
+}
 
+.cookie_addition_number {
+    color: #fff;
+    position: absolute;
+    text-shadow: 1px 1px 5px #000;
+    font-size: 20px;
+    z-index: 11;
+    user-select: none;
+    pointer-events: none;
+    animation: float_up 4s ease-out ;
+    animation-fill-mode: forwards;
+}
 
 
 @keyframes shine_rotation_clock {
@@ -257,4 +282,14 @@
 @keyframes shine_rotation_anticlock {
     0% {transform: rotate(0deg)}
     100% {transform: rotate(-360deg)}
+}
+
+@keyframes float_up {
+    0% {transform: translateY(0); opacity: 1}
+    100% {transform: translateY(-50px); opacity: 0}
+}
+@keyframes float_up_fall {
+    0% {transform: translateY(0); opacity: 1}
+    60% {transform: translateY(-30px); opacity: 0.5}
+    100% {transform: translateY(-10); opacity: 0}
 }
