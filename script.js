@@ -6,6 +6,7 @@ let currentCursorUprgradeAddition = 0.1;
 let currentGrandmaUprgradeAddition = 1;
 let currentFarmUprgradeAddition = 8;
 let numberOfCursors = 0;
+let cursorLevelUpCount = 0;
 let numberOfGrandmas = 0;
 let numberOfFarms = 0;
 
@@ -133,7 +134,10 @@ function buttonLevelUp(type, element) {
     if(type === "cursor_upgrade") {
         let UpgradePrice = getCurrentPrice("level_up")
         if (cookieCountNum >= UpgradePrice && numberOfCursors > 0) {
-            
+            cursorLevelUpCount = cursorLevelUpCount + 1
+
+            saveCurorLevelUpCount()
+
             deleteLastLevelUpButton(element)
 
             cookieCountNum = cookieCountNum - UpgradePrice;
@@ -281,6 +285,9 @@ function saveCurrentCursorAddition() {
 function saveCurrentCursorUpgradePrice(UpgradePrice) {
     localStorage.setItem("cursor_upgrade_price", UpgradePrice)
 }
+function saveCurorLevelUpCount() {
+    localStorage.setItem("cursor_level_up_count", cursorLevelUpCount)
+}
 
 
 function checkIfSavedIncreasePerSecond() {
@@ -300,7 +307,29 @@ function checkIfSavedIncreasePerSecond() {
 
         let StorageUpdatedCursorIncrease = currentSavedCursorAdditionParsed * currentCursorCountParsed;
 
-        currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + StorageUpdatedCursorIncrease;
+
+        if (localStorage.getItem("cursor_level_up_count") != null) { 
+
+            let currentCursorLevelUpStorage = localStorage.getItem("cursor_level_up_count");
+            let currentCursorLevelUpParsed = JSON.parse(currentCursorLevelUpStorage);
+
+            console.log(currentCursorLevelUpParsed)
+
+            if (currentCursorLevelUpParsed == 1) {
+                StorageUpdatedCursorIncrease = StorageUpdatedCursorIncrease * 2
+                currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + StorageUpdatedCursorIncrease;
+                document.getElementById("level_up_button").remove();
+                currentCookieIncrease = currentCookieIncrease * 2;
+            } else if (currentCursorLevelUpParsed == 2) {
+                StorageUpdatedCursorIncrease = StorageUpdatedCursorIncrease * 4
+                currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + StorageUpdatedCursorIncrease;
+                document.getElementById("level_up_button").remove();
+                currentCookieIncrease = currentCookieIncrease * 4;
+            }
+        } else {
+            currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + StorageUpdatedCursorIncrease;
+        }
+
         updateCookieIncrease()
         let UpgradePrice = updateItem("cursor")
 
