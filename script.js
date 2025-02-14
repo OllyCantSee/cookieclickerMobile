@@ -321,12 +321,6 @@ function checkIfSavedIncreasePerSecond() {
                 document.getElementById("level_up_button").remove();
                 currentCookieIncrease = currentCookieIncrease * 2;
                 currentCursorUprgradeAddition = currentCursorUprgradeAddition * 2
-            } else if (currentCursorLevelUpParsed == 2) {
-                StorageUpdatedCursorIncrease = StorageUpdatedCursorIncrease * 4
-                currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + StorageUpdatedCursorIncrease;
-                document.getElementById("level_up_button").remove();
-                currentCookieIncrease = currentCookieIncrease * 4;
-                currentCursorUprgradeAddition = currentCursorUprgradeAddition * 4
             }
         } else {
             currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + StorageUpdatedCursorIncrease;
