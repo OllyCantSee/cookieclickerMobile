@@ -9,6 +9,9 @@ let numberOfCursors = 0;
 let numberOfGrandmas = 0;
 let numberOfFarms = 0;
 
+checkIfSavedCookies()
+checkIfSavedIncreasePerSecond()
+
 function getCurrentPrice(type) {
     return document.getElementById(type + "_price").innerHTML;
 }
@@ -17,6 +20,7 @@ function getCurrentPrice(type) {
 function addCookie() {
     cookieCountNum = cookieCountNum + currentCookieIncrease;
     updateCookieCount()
+    saveCookieCount()
 }
 
 // add cookie FROM TIMER
@@ -40,18 +44,23 @@ let cookieIncreaseTimer = setInterval(cookiesUpdatePerSecond, 1000)
 
 function cookiesUpdatePerSecond() {
     addCookieFromIncrease()
-
+    saveCookieCount()
 }
 
 function addItem(type) {
     if (type === "cursor") {
         numberOfCursors = numberOfCursors + 1;
+        saveCursorCount()
+        saveCookieCount()
+        saveCurrentCursorAddition()
     }
     if (type === "grandma") {
         numberOfGrandmas = numberOfGrandmas + 1;
+        saveCookieCount()
     }
     if (type === "farm") {
         numberOfFarms = numberOfFarms + 1;
+        saveCookieCount()
     }
 }
 
@@ -64,6 +73,7 @@ function buttonUpgrade(type) {
             currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + currentCursorUprgradeAddition;
             updateCookieCount();
             updateCookieIncrease();
+            saveCurrentCursorAddition()
             addItem("cursor");
             updateItem("cursor");
         }
@@ -97,6 +107,8 @@ function updateItem(type) {
         document.getElementById(type + "_price").innerHTML = Math.round(parseInt(UpgradePrice), 1);
 
         document.getElementById(type + "_count").innerHTML = numberOfCursors;
+        
+        return UpgradePrice;
     }
     if (type === "grandma") {
         let UpgradePrice = getCurrentPrice("grandma")
@@ -255,4 +267,58 @@ cookieSection.addEventListener("mousedown", function(event) {
 });
 
 
+// SAVE COOKIES FUNCTION 
 
+function saveCookieCount() {
+    localStorage.setItem("cookie_count", cookieCountNum)
+}
+function saveCursorCount() {
+    localStorage.setItem("cursor_count", numberOfCursors)
+}
+function saveCurrentCursorAddition() {
+    localStorage.setItem("cursor_addition", currentCursorUprgradeAddition)
+}
+function saveCurrentCursorUpgradePrice(UpgradePrice) {
+    localStorage.setItem("cursor_upgrade_price", UpgradePrice)
+}
+
+
+function checkIfSavedIncreasePerSecond() {
+    let executed = false
+    if (localStorage.getItem("cursor_addition") != null && !executed) {
+
+        let numberOfCursorsStorage = localStorage.getItem("cursor_count");
+        let numberOfCursorsParsed = JSON.parse(numberOfCursorsStorage);
+
+        numberOfCursors = numberOfCursorsParsed;
+
+        let currentCursorAdditionStorage = localStorage.getItem("cursor_addition");
+        let currentSavedCursorAdditionParsed = JSON.parse(currentCursorAdditionStorage);
+
+        let currentCursorCountStorage = localStorage.getItem("cursor_count");
+        let currentCursorCountParsed = JSON.parse(currentCursorCountStorage);
+
+        let StorageUpdatedCursorIncrease = currentSavedCursorAdditionParsed * currentCursorCountParsed;
+
+        currentCookieIncreasePerSecond = currentCookieIncreasePerSecond + StorageUpdatedCursorIncrease;
+        updateCookieIncrease()
+        let UpgradePrice = updateItem("cursor")
+
+        saveCurrentCursorUpgradePrice(UpgradePrice)
+
+
+
+        executed = true
+    }
+}
+
+function checkIfSavedCookies() {
+    let executed = false
+    if (localStorage.getItem("cookie_count") != null && !executed) {
+        let cookiesFromStorage = localStorage.getItem("cookie_count")
+        let cookieCountNumParsed = JSON.parse(cookiesFromStorage);
+        cookieCountNum = cookieCountNumParsed
+        executed = true
+        updateCookieCount()
+    }
+}
