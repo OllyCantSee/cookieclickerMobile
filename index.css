@@ -22,6 +22,7 @@
     background-image: url(https://cdn.dashnet.org/cookieclicker/img/bgBlue.jpg);
     padding-top: 20px;
     height: min-content;
+    width: 100%;
 }
 
 .bottom_line {
@@ -296,7 +297,14 @@
     background-image: url(https://cdn.dashnet.org/cookieclicker/img/bgBlue.jpg);
 }
 
-
+.falling_cookie {
+    position: absolute;
+    user-select: none;
+    pointer-events: none;
+    animation: falling_cookie 2s linear;
+    animation-fill-mode: forwards;
+    top: -50px;
+}
 
 @keyframes shine_rotation_clock {
     0% {transform: rotate(0deg)}
@@ -316,4 +324,9 @@
     0% {transform: translateY(0); opacity: 1;}
     60% {transform: translateY(-30px); opacity: 0.5;}
     100% {transform: translateY(-10); opacity: 0;}
+}
+
+@keyframes falling_cookie {
+    0% {transform: translateY(0); opacity: 0.5}
+    100% {transform: translateY(450px); opacity: 0}
 }
