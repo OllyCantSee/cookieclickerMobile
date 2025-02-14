@@ -188,6 +188,32 @@ function deleteLastLevelUpButton(element) {
 let cookieSection = document.getElementById("cookie_button");
 
 cookieSection.addEventListener("mousedown", function(event) {
+
+    // Dropper Effect
+
+    const cookieSection = document.getElementById('cookie_section');
+    const style = window.getComputedStyle(cookieSection);
+    const width = parseFloat(style.width);
+
+    let randomWidth = Math.random() * (width - 10) + 10;
+
+    const cookieBackgroundDropper = document.createElement("div");
+    const cookieBackgroundDropperImage = document.createElement("img");
+    cookieBackgroundDropperImage.src = "Cookie Image.png";
+    cookieBackgroundDropper.appendChild(cookieBackgroundDropperImage);
+    cookieBackgroundDropper.classList.add("falling_cookie")
+
+    cookieBackgroundDropper.style.left = randomWidth + "px";
+
+    cookieSection.appendChild(cookieBackgroundDropper)
+
+    setTimeout(() => {
+        cookieBackgroundDropper.remove();
+    }, 2000);
+
+
+
+    // Cookie Effect
     let cookieBox = document.getElementById("cookie_container");
     
     let rect = cookieBox.getBoundingClientRect();
@@ -226,9 +252,6 @@ cookieSection.addEventListener("mousedown", function(event) {
     setTimeout(() => {
         cookieAdditionMessage.remove();
     }, 4000);
-
-    console.log(mouseXCoordinate);
-    console.log(mouseYCoordinate);
 });
 
 
