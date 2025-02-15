@@ -1,4 +1,5 @@
 let cookieCountNum = 0;
+let totalCookieCountNum = 0;
 let currentCookieIncrease = 1;
 
 let currentCookieIncreasePerSecond = 0;
@@ -12,6 +13,33 @@ let numberOfFarms = 0;
 
 checkIfSavedCookies()
 checkIfSavedIncreasePerSecond()
+checkUnlock()
+checkPrice("cursor")
+checkPrice("grandma")
+checkPrice("farm")
+
+console.log(totalCookieCountNum)
+
+function checkPrice(type) {
+    let itemPrice =  document.getElementById(type + "_price").innerHTML;
+
+    if (cookieCountNum >= itemPrice) {
+        document.getElementById(type + "_price").classList.add("green_text")
+        document.getElementById(type + "_price").classList.remove("red_text")
+    } else {
+        document.getElementById(type + "_price").classList.add("red_text")
+        document.getElementById(type + "_price").classList.remove("green_text")
+    }
+}
+
+function checkUnlock() {
+    if (totalCookieCountNum >= 15) {
+        document.getElementById("cursor_button_name").innerHTML = "Cursor"
+        document.getElementById("cursor_button_image").classList.remove("cursor_button_image")
+        document.getElementById("cursor_price").classList.remove("cursor_price")
+        document.getElementById("cursor_dark_cover").classList.remove("cursor_dark_cover")
+    }
+}
 
 function getCurrentPrice(type) {
     return document.getElementById(type + "_price").innerHTML;
@@ -20,14 +48,24 @@ function getCurrentPrice(type) {
 // Add cookie FROM CLICKING
 function addCookie() {
     cookieCountNum = cookieCountNum + currentCookieIncrease;
+    totalCookieCountNum = totalCookieCountNum + currentCookieIncrease;
+    saveTotalCookieCount()
+    checkUnlock()
     updateCookieCount()
     saveCookieCount()
+    checkPrice("cursor")
+    checkPrice("grandma")
+    checkPrice("farm")
 }
 
 // add cookie FROM TIMER
 function addCookieFromIncrease() {
     cookieCountNum = cookieCountNum + currentCookieIncreasePerSecond
+    saveTotalCookieCount()
     updateCookieCount()
+    checkPrice("cursor")
+    checkPrice("grandma")
+    checkPrice("farm")
 }
 
 // update cookie COUNT
@@ -44,8 +82,12 @@ function updateCookieIncrease() {
 let cookieIncreaseTimer = setInterval(cookiesUpdatePerSecond, 1000)
 
 function cookiesUpdatePerSecond() {
+    saveTotalCookieCount()
     addCookieFromIncrease()
     saveCookieCount()
+    checkPrice("cursor")
+    checkPrice("grandma")
+    checkPrice("farm")
 }
 
 function addItem(type) {
@@ -54,14 +96,23 @@ function addItem(type) {
         saveCursorCount()
         saveCookieCount()
         saveCurrentCursorAddition()
+        checkPrice("grandma")
+        checkPrice("farm")
+        checkPrice("cursor")
     }
     if (type === "grandma") {
         numberOfGrandmas = numberOfGrandmas + 1;
         saveCookieCount()
+        checkPrice("cursor")
+        checkPrice("grandma")
+        checkPrice("farm")
     }
     if (type === "farm") {
         numberOfFarms = numberOfFarms + 1;
         saveCookieCount()
+        checkPrice("cursor")
+        checkPrice("grandma")
+        checkPrice("farm")
     }
 }
 
@@ -77,6 +128,9 @@ function buttonUpgrade(type) {
             saveCurrentCursorAddition()
             addItem("cursor");
             updateItem("cursor");
+            checkPrice("grandma")
+            checkPrice("farm")
+            checkPrice("cursor")
         }
     } else if (type === "grandma") {
         let UpgradePrice = getCurrentPrice("grandma")
@@ -87,6 +141,9 @@ function buttonUpgrade(type) {
             updateCookieIncrease();
             addItem("grandma");
             updateItem("grandma");
+            checkPrice("grandma")
+            checkPrice("farm")
+            checkPrice("cursor")
         }
     } else if (type === "farm") {
         let UpgradePrice = getCurrentPrice("farm")
@@ -97,6 +154,9 @@ function buttonUpgrade(type) {
             updateCookieIncrease();
             addItem("farm");
             updateItem("farm");
+            checkPrice("grandma")
+            checkPrice("farm")
+            checkPrice("cursor")
         }
     }
 }
@@ -288,6 +348,9 @@ function saveCurrentCursorUpgradePrice(UpgradePrice) {
 function saveCurorLevelUpCount() {
     localStorage.setItem("cursor_level_up_count", cursorLevelUpCount)
 }
+function saveTotalCookieCount() {
+    localStorage.setItem("total_cookie_count", totalCookieCountNum)
+}
 
 
 function checkIfSavedIncreasePerSecond() {
@@ -339,11 +402,23 @@ function checkIfSavedIncreasePerSecond() {
 
 function checkIfSavedCookies() {
     let executed = false
-    if (localStorage.getItem("cookie_count") != null && !executed) {
+    if (localStorage.getItem("cookie_count") != null && !executed && localStorage.getItem("total_cookie_count") != null) {
         let cookiesFromStorage = localStorage.getItem("cookie_count")
         let cookieCountNumParsed = JSON.parse(cookiesFromStorage);
         cookieCountNum = cookieCountNumParsed
         executed = true
         updateCookieCount()
+
+        let totalCookiesFromStorage = localStorage.getItem("total_cookie_count")
+        let totalCookieCountNumParsed = JSON.parse(totalCookiesFromStorage);
+        totalCookieCountNum = totalCookieCountNumParsed
     }
+}
+
+function resetGame() {
+    localStorage.removeItem("cookie_count", cookieCountNum)
+    localStorage.removeItem("cursor_count", numberOfCursors)
+    localStorage.removeItem("cursor_addition", currentCursorUprgradeAddition)
+    localStorage.removeItem("cursor_upgrade_price", UpgradePrice)
+    localStorage.removeItem("cursor_level_up_count", cursorLevelUpCount)
 }
