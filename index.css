@@ -330,6 +330,30 @@
     background: #00000069;
 }
 
+.grandma_button_image {
+    filter: grayscale(1) contrast(0) brightness(0);
+}
+
+.grandma_dark_cover {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #00000069;
+}
+
+.farm_button_image {
+    filter: grayscale(1) contrast(0) brightness(0);
+}
+
+.farm_dark_cover {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #00000069;
+}
+
+
+
 
 @keyframes shine_rotation_clock {
     0% {transform: rotate(0deg)}
