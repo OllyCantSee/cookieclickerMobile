@@ -39,6 +39,18 @@ function checkUnlock() {
         document.getElementById("cursor_price").classList.remove("cursor_price")
         document.getElementById("cursor_dark_cover").classList.remove("cursor_dark_cover")
     }
+    if (totalCookieCountNum >= 100) {
+        document.getElementById("grandma_button_name").innerHTML = "Grandma"
+        document.getElementById("grandma_button_image").classList.remove("grandma_button_image")
+        document.getElementById("cursor_price").classList.remove("cursor_price")
+        document.getElementById("grandma_dark_cover").classList.remove("grandma_dark_cover")
+    }
+    if (totalCookieCountNum >= 1100) {
+        document.getElementById("farm_button_name").innerHTML = "Farm"
+        document.getElementById("farm_button_image").classList.remove("farm_button_image")
+        document.getElementById("farm_price").classList.remove("farm_price")
+        document.getElementById("farm_dark_cover").classList.remove("farm_dark_cover")
+    }
 }
 
 function getCurrentPrice(type) {
@@ -214,6 +226,10 @@ function buttonLevelUp(type, element) {
 
             updateCookieIncrease();
             updateCookieCount();
+
+            checkPrice("cursor")
+            checkPrice("grandma")
+            checkPrice("farm")
         }
     }
 
@@ -235,6 +251,10 @@ function buttonLevelUp(type, element) {
 
             updateCookieIncrease();
             updateCookieCount();
+
+            checkPrice("cursor")
+            checkPrice("grandma")
+            checkPrice("farm")
         }
     }
 }
