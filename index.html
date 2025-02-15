@@ -45,19 +45,20 @@
             </div>
 
             <div class="upgrade_button">
-                <div class="cursor_upgrade_container">     
+                <div class="cursor_upgrade_container">  
+                    <div class="cursor_dark_cover" id="cursor_dark_cover"></div>   
                     <div class="background_image_container">
                         <img class="background_image" src="Buildings_tile.png" alt="">
                     </div>
 
                     <button class="cursor_upgrade_button" onclick="buttonUpgrade('cursor')"></button>
                     <div class="image_section">
-                        <img class="button_image" src="Cursor.png" alt="">
+                        <img class="button_image cursor_button_image" id="cursor_button_image" src="Cursor.png" alt="">
                     </div>
 
                     <div class="name_price_section">
                         <div class="button_name_container">
-                            <p href="" class="button_name">Cursor</p>
+                            <p href="" class="button_name" id="cursor_button_name">???</p>
                         </div>
 
                         <div class="price_container">
@@ -134,7 +135,7 @@
             </div>
         
             <div class="level_up_container">
-                <div class="level_up_button" id="level_up_button">
+                <div class="level_up_button cursor_upgrader" id="level_up_button">
                     <button class="level_up_button_active" onclick="buttonLevelUp('cursor_upgrade', 0)"></button>
                     <p class="item_count" hidden id="level_up_price">100</p>
                     <img class="cursor_icon" src="cursor_icon.png" alt="">
@@ -150,6 +151,8 @@
                     <img class="cursor_icon" src="grandma_icon.png" alt="">
                 </div>
             </div>
+
+            <button class="reset_game" onclick="resetGame()">RESET GAME</button>
 
         </section>
 
