@@ -178,6 +178,7 @@ function updateItem(type) {
         let UpgradePrice = getCurrentPrice("cursor")
         UpgradePrice = parseInt(UpgradePrice) * 1.15;
         document.getElementById(type + "_price").innerHTML = Math.round(parseInt(UpgradePrice), 1);
+        saveCurrentCursorUpgradePrice(UpgradePrice)
 
         document.getElementById(type + "_count").innerHTML = numberOfCursors;
         
@@ -289,7 +290,7 @@ cookieSection.addEventListener("mousedown", function(event) {
 
     const cookieSection = document.getElementById('cookie_section');
     const style = window.getComputedStyle(cookieSection);
-    const width = parseFloat(style.width);
+    const width = parseFloat(style.width) - 40;
 
     let randomWidth = Math.random() * (width - 10) + 10;
 
@@ -410,11 +411,14 @@ function checkIfSavedIncreasePerSecond() {
         }
 
         updateCookieIncrease()
-        let UpgradePrice = updateItem("cursor")
 
-        saveCurrentCursorUpgradePrice(UpgradePrice)
+        
+        let currentCursorUpgradePriceStorage = localStorage.getItem("cursor_upgrade_price");
+        let currentCursorUpgradePriceParsed = JSON.parse(currentCursorUpgradePriceStorage);
 
+        console.log(currentCursorUpgradePriceParsed)
 
+        document.getElementById("cursor_price").innerHTML = Math.round(currentCursorUpgradePriceParsed, 0)
 
         executed = true
     }
